@@ -1,0 +1,83 @@
+*******************************************************************************************************************************************************************************
+Bformat in Tridium Niagara allows you to display values or information in a normal format for GUI or messaging purposes
+*******************************************************************************************************************************************************************************
+
+//Value + Status of the Out slot
+%.%
+
+//Value of the Out slot
+%out.value%	
+
+//Status of the Out slot
+%out.status%	
+
+//Get the total elapsed time in hours
+%Hours%	
+//Get the total elapsed time in minutes
+%Minutes%	
+
+//Display Name of the component
+%displayName%	
+
+//Display Name of the component showing only the part from the first to the third character
+%displayName.substring(0,3)%	
+
+//Display Name of the component showing only the end part from the second-last character
+%displayName.substring(-2)%	
+
+//Name of the component
+%name%	
+
+//Display Name of the parent component(1 level up)
+%parent.displayName%	
+
+//Name of the parent component(1 level up)
+%parent.name%	
+
+//Name of the parent of the parent component(2 levels up)
+%parent.parent.name%	
+
+//Name of the device in which a proxy point resides(no matter how many levels above the point)
+%parent.proxyExt.device.name%	
+
+//Name of the network in which a proxy point resides(no matter how many levels above the point)
+%parent.proxyExt.network.name%	
+
+//Returns the username of the user logged in(use “ord” “station:|slot:/”)
+%user()%	
+//Returns the current time(use “ord” “station:|slot:/”)
+%time()%	
+
+*******************************************************************************************************************************************************************************
+
+MQTT
+
+//On an MQTT point, returns the “topic” text
+%proxyExt.topic%	
+
+*******************************************************************************************************************************************************************************
+
+Alarm Bformat
+
+//(to use on Alarm Extension Text)Returns the “Source Name” within the Fault, Offnormal or Normal text of an alarm
+%alarmData.sourceName%	
+
+//(to use on Alarm Extension Text)Returns the “High Limit” within the Fault, Offnormal or Normal text of an alarm
+%alarmData.highLimit%
+
+//(to use on Alarm Extension Text)Returns the “Low Limit” within the Fault, Offnormal or Normal text of an alarm
+%alarmData.lowLimit%	
+
+*******************************************************************************************************************************************************************************
+CurrentTime block
+
+//Using the “CurrentTime” block available from the kitControl palette
+
+%out.prevDay%	
+%out.prevMonth%
+%out.prevYear%
+%out.Hour%	
+%out.Minute%
+%out.Day%
+%out.Month%
+%out.Year%
