@@ -6,4 +6,4 @@ Please note while every effort will be made to specify which of the following qu
 *************************************************************************************************************************************
 
 With time I hope to add more instructions for the best way to use these queries within a station for GUI.
-Please submit any requests and or additions to the queries I may not know!
+Please submit any requests and or additions to the queries list!
