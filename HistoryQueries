@@ -1,11 +1,13 @@
+
 ************************************************************************************************************************************************************************
-Single History ord followed by timerange and delta, either true or false:
+
+//Single History ord followed by timerange and delta, either true or false:
 
 history:/[stationName]/[historyName]?period=Last7Days;delta=false
 
 ************************************************************************************************************************************************************************
 
-Set of periods that can be used in a BHistoryTimeRange
+//Set of periods that can be used in a BHistoryTimeRange
 
 timeRange
 today
@@ -21,69 +23,62 @@ lastYear
 
 ************************************************************************************************************************************************************************
 
-Creating a BQL History Rollup from an existing history. This can be used to display daily, weekly, monthly, annual roll up values.
+//Creating a BQL History Rollup from an existing history. This can be used to display daily, weekly, monthly, annual roll up values.
 
 history:/[stationName]/[historyName]?period=last7Days;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'daily')
 
 ************************************************************************************************************************************************************************
 
+//BQL Select Queries to display history roll up BQL History Rollup in a collection table within workbench. Apend directly onto BQL History Rollup with no spaces.
+//Multiple BQL strings can be added to one query
+//The following will display the date in defined columns with the 'label' as the column header within a bound table
+
+|bql:select timestamp.date as 'Date', timestamp.weekday as 'Day', sum as 'Total'|view:workbench:CollectionTable
+
+************************************************************************************************************************************************************************
+
+//Roll up types:
+min
+max
+ave
+sum
+
+************************************************************************************************************************************************************************
+
+//timestamp types:
+timestamp.date
+timestamp.weekday
+timestamp.hour
+
+************************************************************************************************************************************************************************
 
 
-history:/[stationName]/[historyName]?period=Last7Days;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'daily')|bql:select timestamp.date as 'Date', timestamp.weekday as 'Day', sum as 'Total'|view:workbench:CollectionTable
 
-history:/[stationName]/[historyName]?period=yearToDate;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|bql:select timestamp.date as 'Date', timestamp.weekday as 'Day', sum as 'Total'|view:workbench:CollectionTable
-
-history:/[stationName]/[historyName]?period=yearToDate;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|bql:select timestamp.date as 'Date', timestamp.weekday as 'Day', sum as 'Total'|view:workbench:CollectionTable
-
-history:/[stationName]/[historyName]?period=yearToDate;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|bql:select timestamp.date as 'Date', timestamp.weekday as 'Day', max as 'Total'|view:workbench:CollectionTable
-
-history:/[stationName]/[historyName]?period=monthToDate;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|bql:select timestamp.date as 'Date', timestamp.weekday as 'Day', max as 'Total'|view:workbench:CollectionTable
-
-
-history:/[stationName]/[historyName]?period=yearToDate;delta=false|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|bql:select timestamp.date as 'Date', timestamp.month as 'Month', max as 'Total'|view:workbench:CollectionTable
-
-
-station:|slot:/MeterData|bql:select * from control:NumericPoint|bql:select out as 'Value', parent.displayName as 'Parent Name', displayName as 'Name'
-
-station:|slot:/MeterData|bql:select * from control:NumericPoint|bql:select out as 'Value', parent.displayName as 'Parent Name', displayName as 'Name'
-
-station:|slot:/MeterData|bql:select * from control:NumericPoint where displayName like 'MeterTotal' or displayName like 'DaykWh' or displayName like 'NightkWh'|bql:select out as 'Value', parent.displayName as 'Parent Name', displayName as 'Name'
-
-
-station:|slot:/MeterData|bql:select * from control:NumericPoint where displayName like 'MeterTotal' or displayName like 'DaykWh' or displayName like 'NightkWh'|bql:select parent.displayName as 'Parent Name', displayName as 'Name', out as 'Value'
-
-bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|bql:select timestamp.date as 'Date', timestamp.weekday as 'Day', sum as 'Total'|view:workbench:CollectionTable
-
-station:|slot:/MeterData|bql:select * from history where displayName like 'MeterTotal' or displayName like 'DaykWh' or displayName like 'NightkWh'|bql:select parent.displayName as 'Parent Name', displayName as 'Name', out.value as 'Value'|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|view:workbench:CollectionTable
-
-history:|slot:/MeterData|bql:select * from history where historyDisplayName like 'MeterTotal' or historyDisplayName like 'DaykWh' or historyDisplayName like 'NightkWh'|bql:select historyDisplayName as 'Parent Name', historyDisplayName as 'Name', out.value as 'Value'|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|view:workbench:CollectionTable
-
-history:|bql:select * where historyDisplayName like 'MeterTotal' or historyDisplayName like 'DaykWh' or historyDisplayName like 'NightkWh'|bql:select historyDisplayName as 'Parent Name', historyDisplayName as 'Name', out.value as 'Value'
-
-station:|slot:/MeterData|bql:select * from control:NumericPoint where displayName like 'MeterTotal' or displayName like 'DaykWh' or displayName like 'NightkWh'|bql:select parent.displayName as 'Parent Name', displayName as 'Name', out as 'Value'
-
-history:|bql:select * from /[stationName] where historyName like '*MeterTotal'or historyName like '*DaykWh' or historyName like '*NightkWh'
-
-history:/[stationName]|bql:select * where historyName like '*MeterTotal'or historyName like '*DaykWh' or historyName like '*NightkWh'|bql:select historyName as 'Name', out as 'Value'
 
 history:/[stationName]|bql:select * where historyName like '*MeterTotal'or historyName like '*DaykWh' or historyName like '*NightkWh'|bql:select historyName as 'Name', bqltime.startofmonth as 'Timestamp'
 
 history:/[stationName]|bql:select * where historyName like '*MeterTotal'or historyName like '*DaykWh' or historyName like '*NightkWh
 
-history:/[stationName]/[stationName]?period=YearToDate;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|view:workbench:CollectionTable
-history:/[stationName]/[stationName]?period=YearToDate;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|bql:select timestamp.date as 'Date', timestamp.month as 'Month', sum as 'Total'|view:workbench:CollectionTable
 
-
-history:/[stationName]/[stationName]?period=YearToDate;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|bql:select timestamp.date as 'Date', timestamp.month as 'Month', sum as 'Total'|view:workbench:CollectionTable
-
-history:/[stationName]/[stationName]?period=lastMonth;delta=true|view:workbench:CollectionTable
-
-
-history:/[stationName]/[stationName]?period=lastMonth;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|bql:select timestamp.date as 'Date', timestamp.month as 'Month', sum as 'Total'|view:workbench:CollectionTable
-
-
-history:/[stationName]/[stationName]?period=lastMonth;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|bql:select timestamp.date as 'Date', timestamp.month as 'Month', sum as 'Total'|view:workbench:CollectionTable
 
 history:/[stationName]/[stationName]?period=yearToDate;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|bql:select timestamp.date as 'Date', timestamp.month as 'Month', sum as 'Total'|view:workbench:CollectionTable
 
+************************************************************************************************************************************************************************
+
+//Extra History Related BQL Queries 
+
+//List points with History Extensions 
+select parent.slotPath from history:HistoryExt
+
+//List points with History Extensions where the capacity is unlimited OR more than 1000
+select parent.slotPath, historyConfig.capacity from history:HistoryExt
+ where historyConfig.capacity.isUnlimited or
+ historyConfig.capacity.maxRecords > 1000
+
+
+************************************************************************************************************************************************************************
+
+//Extra History Related Java Queries 
+
+BHistoryRecord getLastRecord()
 
