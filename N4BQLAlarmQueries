@@ -1,0 +1,98 @@
+
+//Control Points in Alarm
+select slotPath, out from control:ControlPoint where status.alarm
+
+//Specify Numeric or Boolean point type
+control:NumericPoint
+control:BooleanPoint
+
+//Display the number of alarms from each alarm class in alarm service
+slot:/Services/Alarm|bql:select name, numberOfUnackedAlarms from alarm:AlarmClass
+
+//Display all points in alarm
+slot:/|bql:select name as 'Point Name',out as 'Point Status' from control:ControlPoint where status.alarm = 'true'
+
+//Display all points from a specific alarm class that are in alarm
+slot:/|bql:select * from alarm:AlarmSourceExt where alarmClass = 'defaultAlarmClass' and status.alarm = true
+
+//Display any alarm
+alarm:|bql:select *
+
+//Number of Unacknowledged Alarms from a specified alarmClass
+local:|fox:|station:|slot:/|bql:select name, unackedAlarmCount from alarm:AlarmClass where name = 'CriticalAlarmClass'
+
+//Number of Alarms inAlarm from a specified alarmClass
+local:|fox:|station:|slot:/|bql:select name, inAlarmCount from alarm:AlarmClass where name = 'AlarmClass2'
+
+//Alarm lists to do BQL Select to select data required and Filtering for Building and only Critical alarms specifying the order of alarms. 
+alarm:|bql:select timestamp,alarmData.sourceName,sourceState,ackState,ackRequired,alarmData.msgText,alarmClass where alarmData.sourceName like 'Building1' and alarmClass like '*Critical*' order by timestamp desc
+alarm:|bql:select timestamp,alarmData.sourceName,sourceState,ackState,ackRequired,alarmData.msgText,alarmClass where alarmData.sourceName like 'Building2' and alarmClass like '*Critical*' order by timestamp desc
+
+
+
+**************************************************************************************************************************************************************************
+This file is a work in progress and there may well be errors in the syntax below this point
+**************************************************************************************************************************************************************************
+
+
+alarm:|bql:select * alarm: [bql:select timestamp, source, alarmData.msgText
+alarm:|bql:select timestamp, source, alarmData.msgText where timestamp.year = 2023
+alarm:|bql:select timestamp, source, alarmData.msgText where period = last7 Days
+alarm:|bql:select timestamp, alarmData.sourceName, normalTime, alarmClass, user where alarmClass = 'defaultAlarmClass' and timestamp in bqltime.lastmonth order by timestamp desc 
+alarm:|bql:select timestamp, alarmData.sourceName, normal Time, alarmClass, user where alarmClass = 'defaultAlarmClass' and timestamp in bqltime.today
+alarm:|bql:select source as 'Class', count(out) as 'Class' where alarmClass = 'defaultAlarmClass' and timestamp in bqltime.today
+alarm:|bql:select source as 'Class', count(out) as 'Class' where alarmClass = 'defaultAlarmClass' and timestamp in bqltime.today|cell:0,0
+
+alarm:|bql:select * where timestamp in bqltime.today
+alarm:|bql:select* where timestamp.month.ordinal = '10'
+alarm:|bql:select * where timestamp.day = '24' and timestamp.month.ordinal = '10' 
+alarm:|bql:select alarmData.Count as 'Count' order by alarmData.Count DESC 
+alarm:|bql:select alarmData.Count as 'Count' order by alarmData.Count ASCalarm: bql:select MAX(alarmData.Count) as 'Max Count'
+alarm:|bql:select alarmData.Count as 'Count' where alarmData.Count > 1000alarm: bql:select* where timestamp in bqltime.weektodate
+alarm:|bql:select * where timestamp >=AbsTime '2023-11-24T12:00:00.000-0' and timestamp <=AbsTime '2023-11-27T14:00:00.000-0'
+alarm:|bql:select timestamp, source, alarmData.msgText where period = last7Days
+alarm:|com.tridium.bql.BBqlTime These return BTime: bqltime.current_time bqltime.currenttime 
+
+
+These return BAbsTime: 
+bqltime.now
+bqltime.currenttimestamp 
+bqltime.current_timestamp
+bqltime.current_date
+bqltime.currentdate
+bqltime.startofday
+bqltime.endofday
+bqltime.startofweek
+bqltime.endofweek
+bqltime.startofmonth
+bqltime.endofmonth
+bqltime.startofyear 
+bqltime.endofyear
+
+Returns BWeekday: 
+bqltime.weekday 
+Returns BMonth: 
+bqltime.month
+These return BAbs TimeRange: 
+bqltime today
+
+
+bqltime.last24hours
+bqltime.yesterday
+bqltime.weektodate
+bqltime.lastweek
+bqltime.last7days
+bqltime.lastmonth
+bqltime.lastyear
+bqltime.monthtodate
+bqltime.yeartodate
+
+alarm:|bql:select timestamp as 'Time Stamp',normalTime as 'Normal Time',alarmData.sourceName,alarmData.msgText,alarmData.fromState,alarmData.toState,alarmData.presentValue,alarmData.highLimit,alarmData.lowLimit,alarmData.Count,alarmClass where timestamp in bqltime.yesterday and alarmClass !='Montrose' order by alarmClass,timestamp ASC
+
+
+Sources:
+mrupperman/Niagara Sample BQL Queries
+
+Leszek G. - Tridium Training
+
+
