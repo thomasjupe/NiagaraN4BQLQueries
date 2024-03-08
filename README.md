@@ -1,4 +1,4 @@
-# Niagara BQL History Queries
+# Tridium Niagara N4 BQL Queries
 
 A collection of Baja Query Language or BQL Queries which can be used to interrogate station histories within the Tridium Niagara N4 Framework. 
 
