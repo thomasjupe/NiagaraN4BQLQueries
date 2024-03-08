@@ -16,5 +16,5 @@ Includes single history and multiple history query with rollup functions.
 <https://github.com/thomasjupe/NiagaraN4BQLQueries/blob/main/N4BQLHistoryQueries>
 
 # Niagara BQL Alarm Queries
-***Future : not yet curated***
 A collection of Baja Query Language or BQL Alarm Queries which can be used to interrogate station histories within a Tridium Niagara N4 Framework. 
+<https://github.com/thomasjupe/NiagaraN4BQLQueries/blob/main/N4BQLAlarmQueries>
