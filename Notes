@@ -1,0 +1,36 @@
+Notes 
+  Notes for BQL Stuff to investigate
+
+    Research:
+        BQL Timestamps / Time / etc
+
+
+
+    Explore:
+      You can use a combination of NEQL and BQL 
+      sys:|neql:n:point|bql:select parent.parent.name as 'Equip', name as 'Point', out as 'Value' where status.isOverridden=true
+
+      The Having clause - Must have an aggrigate such as SUM, MIN, MAX, AVE
+      |bql:select displayName, Sum(out.value) from control:NumericPoint having Sum(out.value) > 50
+
+      OrderBy - BQL query can be sorted using the Order By clause. Ordering can be ascending (ASC) or descending (DESC). If no order is specified, ASC order is used.
+      |bql:select slotPath, displayName, out.value from control:NumericPoint order by out.value DESC
+      |bql:select slotPath, displayName, out.value from control:NumericPoint order by slotPath, displayName DESC
+
+      Look into how to resolve a BQL Query in Java
+
+      Using WebWidget with a BQL Query limit js view:report:HTML5BqlGridTable with Wb View Binding with ord to BQLGrid
+
+      period=timeRange;start=YYYY-MM-DD-?????;end=
+
+    Add to:
+      Alarms : alarm:|bql:select * where uuid = Uuid '[enter UUID]'
+      Alarms : Message Texts are formatted at display time so call BFormat.make(alarmDataMsgText).format(alarmRecord) if you want to display it.
+      Alarms : station:|slot:/|bql:select * from alarm:AlarmSourceExt where alarmInhibit.boolean = 'true'
+      Alarms : station:|slot:/|bql:select parent.name as 'Point Name',parent.out as 'Point Status' from alarm:AlarmSourceExt where alarmInhibit.boolean = 'true'
+      Alarms : station:|slot:/|bql:select * from alarm:AlarmSourceExt where alarmInhibit.boolean = 'true'|bql:size 
+
+      Misc : station:|slot:/|bql:select name as 'Point Name',out as 'Point Status' from control:ControlPoint where status.overridden = 'true'
+
+      Schedules : station:|slot:/|bql:select parent.parent.parent.displayName as 'Schedule',days as 'Event Date',displayName as 'Day Of Week',day.time.start as 'Occ1',day.time.finish as 'Unocc1',day.time1.start as 'Occ2',day.time1.finish as 'Unocc2' from schedule:DailySchedule
+      
