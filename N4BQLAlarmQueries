@@ -6,6 +6,9 @@ select slotPath, out from control:ControlPoint where status.alarm
 control:NumericPoint
 control:BooleanPoint
 
+//Add size to find the total number of alarms in query
+|bql:size
+
 //Display the number of alarms from each alarm class in alarm service
 slot:/Services/Alarm|bql:select name, numberOfUnackedAlarms from alarm:AlarmClass
 
@@ -24,16 +27,28 @@ local:|fox:|station:|slot:/|bql:select name, unackedAlarmCount from alarm:AlarmC
 //Number of Alarms inAlarm from a specified alarmClass
 local:|fox:|station:|slot:/|bql:select name, inAlarmCount from alarm:AlarmClass where name = 'AlarmClass2'
 
+//Show alarms that have been inhibited
+station:|slot:/|bql:select * from alarm:AlarmSourceExt where alarmInhibit.boolean = 'true'
+//as above with select showing point name and point status
+station:|slot:/|bql:select parent.name as 'Point Name',parent.out as 'Point Status' from alarm:AlarmSourceExt where alarmInhibit.boolean = 'true'
+//as above but showing the number of alarms
+station:|slot:/|bql:select * from alarm:AlarmSourceExt where alarmInhibit.boolean = 'true'|bql:size
+
 //Alarm lists to do BQL Select to select data required and Filtering for Building and only Critical alarms specifying the order of alarms. 
 alarm:|bql:select timestamp,alarmData.sourceName,sourceState,ackState,ackRequired,alarmData.msgText,alarmClass where alarmData.sourceName like 'Building1' and alarmClass like '*Critical*' order by timestamp desc
 alarm:|bql:select timestamp,alarmData.sourceName,sourceState,ackState,ackRequired,alarmData.msgText,alarmClass where alarmData.sourceName like 'Building2' and alarmClass like '*Critical*' order by timestamp desc
 
+//List of Alarms from a specific point, using the Uuid 
+alarm:|bql:select * where uuid = Uuid '[enter UUID]'
 
+**************************************************************************************************************************************************************************
+In the report service there is an AlarmQueryToCsv component which you can use to export your alarm queries to CSV
 
 **************************************************************************************************************************************************************************
 This file is a work in progress and there may well be errors in the syntax below this point
 **************************************************************************************************************************************************************************
 
+//NB. Message Texts are formatted at display time so call BFormat.make(alarmDataMsgText).format(alarmRecord) if you want to display it.
 
 alarm:|bql:select * alarm: [bql:select timestamp, source, alarmData.msgText
 alarm:|bql:select timestamp, source, alarmData.msgText where timestamp.year = 2023
