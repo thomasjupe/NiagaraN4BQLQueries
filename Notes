@@ -1,9 +1,11 @@
 Notes 
   Notes for BQL Stuff to investigate
 
-    Research:
-        BQL Timestamps / Time / etc
-
+    Test:
+        |bql:size
+        On history:     timestamp.year = 2023
+                        timestamp.month.ordinal = '10'
+                        timestamp.day = 1
 
 
     Explore:
@@ -17,20 +19,43 @@ Notes
       |bql:select slotPath, displayName, out.value from control:NumericPoint order by out.value DESC
       |bql:select slotPath, displayName, out.value from control:NumericPoint order by slotPath, displayName DESC
 
-      Look into how to resolve a BQL Query in Java
+      Look into how to resolve a BQL Query in Java for BQL Expression component {kitcontrol>Utilities}
 
       Using WebWidget with a BQL Query limit js view:report:HTML5BqlGridTable with Wb View Binding with ord to BQLGrid
+      ExportSource component (report) source export to csv via the file:ITableToCsv action Bind Buttons to generate report and display it in GUI
 
       period=timeRange;start=YYYY-MM-DD-?????;end=
 
-    Add to:
-      Alarms : alarm:|bql:select * where uuid = Uuid '[enter UUID]'
-      Alarms : Message Texts are formatted at display time so call BFormat.make(alarmDataMsgText).format(alarmRecord) if you want to display it.
-      Alarms : station:|slot:/|bql:select * from alarm:AlarmSourceExt where alarmInhibit.boolean = 'true'
-      Alarms : station:|slot:/|bql:select parent.name as 'Point Name',parent.out as 'Point Status' from alarm:AlarmSourceExt where alarmInhibit.boolean = 'true'
-      Alarms : station:|slot:/|bql:select * from alarm:AlarmSourceExt where alarmInhibit.boolean = 'true'|bql:size 
+      //Displays in a bound label the first cell of a query 
+      |cell:0,0 
+      //cell:[Column,Row]
+
+      On Target BNumericWritable inherits attributes from BNumericPoint
+
+
+    Add to: 
 
       Misc : station:|slot:/|bql:select name as 'Point Name',out as 'Point Status' from control:ControlPoint where status.overridden = 'true'
+      Misc :   //Number of points in override
+              bql:select count(status) as 'Overridden Count' from control:ControlPoint where status.isOverridden=true
+              bql:select count(status) from control:ControlPoint where status.isOverridden=true|cell:0,0
+                                                                  (Test) status.overridden=true
+
+      Misc :   Niagara query to display all Niagara stations showing IP address and Software Version
+              station:|slot:/|bql:select name as 'Station Name',slotPathOrd as 'Path',address as 'Ip Address',version as 'Software Version' from niagaraDriver:niagaraStation where status.overridden = 'true'
+              bql:|version =! '4.12*' (TEST)
+
 
       Schedules : station:|slot:/|bql:select parent.parent.parent.displayName as 'Schedule',days as 'Event Date',displayName as 'Day Of Week',day.time.start as 'Occ1',day.time.finish as 'Unocc1',day.time1.start as 'Occ2',day.time1.finish as 'Unocc2' from schedule:DailySchedule
+        
+      All : If you are using ?period=[time] and want to enter the BQL Query wizard you need to delete it as the BQL Query wizard does not recognise it. 
+
       
+
+      List of Attribultes
+isAlarm
+isDisabled
+isDown
+isFault
+isOverridden
+
