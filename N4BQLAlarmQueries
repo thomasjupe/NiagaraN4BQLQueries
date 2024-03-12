@@ -15,6 +15,12 @@ slot:/Services/Alarm|bql:select name, numberOfUnackedAlarms from alarm:AlarmClas
 //Display all points in alarm
 slot:/|bql:select name as 'Point Name',out as 'Point Status' from control:ControlPoint where status.alarm = 'true'
 
+//Show all alarm extensions
+slot:/|bql:select * from alarm:AlarmSourceExt 
+
+//Show all alarm extensions in a specified alarm class 
+slot:/|bql:select * from alarm:AlarmSourceExt where alarmClass = 'CriticalAlarmClass'
+
 //Display all points from a specific alarm class that are in alarm
 slot:/|bql:select * from alarm:AlarmSourceExt where alarmClass = 'defaultAlarmClass' and status.alarm = true
 
