@@ -50,7 +50,9 @@ Notes
         
       All : If you are using ?period=[time] and want to enter the BQL Query wizard you need to delete it as the BQL Query wizard does not recognise it. 
 
-      
+      station:|slot:/|bql:select name as 'name',proxyExt.objectId as 'ObjectID',slotPath as 'Path' from baja:Component where proxyExt.objectId = 'analogInput:10'
+
+station:|slot:/|bql:select name as 'name'from bacnet:BacnetDevice
 
       List of Attribultes
 isAlarm
