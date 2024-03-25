@@ -47,6 +47,12 @@ alarm:|bql:select timestamp,alarmData.sourceName,sourceState,ackState,ackRequire
 //List of Alarms from a specific point, using the Uuid 
 alarm:|bql:select * where uuid = Uuid '[enter UUID]'
 
+//Tom's Template Alarms
+slot:/|bql:select parent.displayName as 'Name', alarmClass as 'Alarm Type', alarmState as 'Alarm State', toOffnormalText as 'Alarm State Text', toNormalText as 'Normal State Text', offnormalAlgorithm as 'Alarm Algorithm', inhibitTime as 'Alarm Inhibit', timeDelay as 'Alarm Time Delay' from alarm:AlarmSourceExt where alarmClass = 'CriticalAlarmClass'
+slot:/|bql:select parent.displayName as 'Name', alarmClass as 'Alarm Type', alarmState as 'Alarm State', toOffnormalText as 'Alarm State Text', toNormalText as 'Normal State Text', offnormalAlgorithm as 'Alarm Algorithm', inhibitTime as 'Alarm Inhibit', timeDelay as 'Alarm Time Delay' from alarm:AlarmSourceExt where alarmClass = 'AlertAlarmClass'
+slot:/|bql:select parent.displayName as 'Name', alarmClass as 'Alarm Type', alarmState as 'Alarm State', toOffnormalText as 'Alarm State Text', toNormalText as 'Normal State Text', offnormalAlgorithm as 'Alarm Algorithm', inhibitTime as 'Alarm Inhibit', timeDelay as 'Alarm Time Delay' from alarm:AlarmSourceExt where alarmClass = 'GeneralAlarmClass'
+slot:/|bql:select parent.displayName as 'Name', alarmClass as 'Alarm Type', alarmState as 'Alarm State', toOffnormalText as 'Alarm State Text', toNormalText as 'Normal State Text', offnormalAlgorithm as 'Alarm Algorithm', inhibitTime as 'Alarm Inhibit', timeDelay as 'Alarm Time Delay' from alarm:AlarmSourceExt where alarmClass = 'NotificationAlarmClass'
+
 **************************************************************************************************************************************************************************
 In the report service there is an AlarmQueryToCsv component which you can use to export your alarm queries to CSV
 
