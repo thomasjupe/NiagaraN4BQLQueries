@@ -55,6 +55,9 @@ Bformat in Tridium Niagara allows you to display values or information in a norm
 %user()%	
 //Returns the current time(use “ord” “station:|slot:/”)
 %time()%	
+//Returns the current time as above but in a text, string, format 15-Apr-24”
+%time().toDateString% 
+
 
 *******************************************************************************************************************************************************************************
 
