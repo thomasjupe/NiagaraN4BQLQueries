@@ -84,6 +84,60 @@ Alarm Bformat
 //(to use on Alarm Extension Text)Returns the “Low Limit” within the Fault, Offnormal or Normal text of an alarm
 %alarmData.lowLimit%	
 
+//(to use in toNormal text) 
+%alarmData.sourceName% is OK
+%alarmData.sourceName% is normal
+
+//(to use in toOffNormal text box) Alarm Name will be displayed along with the text and High Limit/Low Limit Setpoint
+%alarmData.source% is above %alarmData.highLimit% degrees
+%alarmData.source% is above %alarmData.lowLimit% degrees
+
+*******************************************************************************************************************************************************************************
+The following list is a list posted on HVAC talk by JThompson it came in useful when I was configuring SMS alarm message from N4 controller for the first time!
+*******************************************************************************************************************************************************************************
+timestamp = Timestamp
+uuid = Uuid
+sourceState = Source State
+ackState = Ack State
+ackRequired = Ack Required
+source=Source
+alarmClass = Alarm Class
+priority = Priority
+normalTime = Normal Time
+ackTime = Ack Time
+user = User
+alarmData = Alarm Data
+alarmData.escalated = Escalated
+alarmData.msgText = Message Text
+alarmData.fromState = From State
+alarmData.toState = To State
+alarmData.notifyType = Notify Type
+alarmData.status = Status
+alarmData.newValue = New Value
+alarmData.setptValue = Set Point Value
+alarmData.errorLimit = Error Limit
+alarmData.deadband = Deadband
+alarmData.Count = Count
+alarmData.highLimit = High Limit
+alarmData.lowLimit = Low Limit
+alarmData.alarmValue = Alarm Value
+alarmData.offnormalValue = Offnormal Value
+alarmData.faultValue = Fault Value
+alarmData.presentValue = Present Value
+alarmData.numericValue = Numeric Value
+alarmData.feedbackValue = Feedback Value
+alarmData.feedbackNumeric = Feedback Numeric
+alarmData.controlledValue = Controlled Value
+alarmData.hyperlinkOrd = Hyperlink Ord
+alarmData.soundFile = Sound File
+alarmData.icon = Icon
+alarmData.sourceName = Source Name
+alarmData.notes = Notes
+alarmData.instructions = Instructions
+alarmData.TimeZone = Time Zone
+alarmTransition = Alarm Transition
+lastUpdate = Last Update
+
 *******************************************************************************************************************************************************************************
 CurrentTime block
 
