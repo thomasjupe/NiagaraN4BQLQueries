@@ -1,0 +1,24 @@
+These BQL Queries are for the VykonPro Min Max Ave Block
+
+These examples are based on iSMA B FCU BACnet register points brought back into a Jace8000
+
+FCU Demands
+FCU LTHW Demand from any bacnet device name prefixed with FCU at start of name:
+station:|slot:/Drivers/BacnetNetwork|bql:select * from control:NumericPoint where displayName like 'Heating_Valve' and parent.parent.displayName like 'FCU*'
+
+FCU CHW Demand from any bacnet device name prefixed with FCU at start of name:
+station:|slot:/Drivers/BacnetNetwork|bql:select * from control:NumericPoint where displayName like 'Cooling_Valve' and parent.parent.displayName like 'FCU*'
+
+Min Max Ave Space Temp as long as value >1, omits faulty sensors and where no sensors fitted:
+station:|slot:/Drivers/BacnetNetwork|bql:select * from control:NumericPoint where displayName like 'LCD_Panel_Temperature' and parent.parent.displayName like 'FCU*' and out.value > '1'
+
+
+
+Chilled Beams Demands
+CB LTHW Demand from any bacnet device name prefixed with CB at start of name:
+station:|slot:/Drivers/BacnetNetwork|bql:select * from control:NumericPoint where displayName like 'Heating_Valve' and parent.parent.displayName like 'CB*'
+
+CB CHW Demand from any bacnet device name prefixed with CB at start of name:
+station:|slot:/Drivers/BacnetNetwork|bql:select * from control:NumericPoint where displayName like 'Cooling_Valve' and parent.parent.displayName like 'CB*'
+
+station:|slot:/Drivers/BacnetNetwork|bql:select * from control:NumericPoint where displayName like '*Space_Temperature' and parent.parent.displayName like '*CB*' and out.value > '1'
