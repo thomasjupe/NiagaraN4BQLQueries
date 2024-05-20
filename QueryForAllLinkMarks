@@ -1,0 +1,20 @@
+//All Link Marks in Station Query
+
+//I use this query in my workflow in instances where a station N4Mig is not compatible with the IO and link marks and need changing to new modules. Additionally as a sanity check to quickly check all IO is linkMarked into strategy.
+
+//To run this query on any station either running in your sandbox, in user home or on a controller open config in workbench and press ctrl+L go to the end of the string and paste the full BQL query from below from : |bql:select parent.name as 'Poi....to....or targetSlotName = 'in16'
+//You can specify individual 'in' slots by deleting unwanted slots. This version searches all slots by default. 
+************************************************************************************************************************************************************************
+
+//If run on localhost
+local:|foxs:|station:|slot:/|bql:select parent.name as 'Point Name',sourceComponent.slotPath as 'Link Mark From Point Ord',sourceSlotName as 'Link Mark From Slot',targetComponent.slotPath as 'Link Mark To Point Ord ',targetSlotName as 'Link Mark To Slot' from baja:Link where targetSlotName = 'in1' or targetSlotName = 'in2' or targetSlotName = 'in3' or targetSlotName = 'in4' or targetSlotName = 'in5' or targetSlotName = 'in6' or targetSlotName = 'in7' or targetSlotName = 'in8' or targetSlotName = 'in9' or targetSlotName = 'in10' or targetSlotName = 'in11' or targetSlotName = 'in12' or targetSlotName = 'in13' or targetSlotName = 'in14' or targetSlotName = 'in15' or targetSlotName = 'in16'
+
+//If run on remote controller (change IP to correct ip address!)
+ip:192.168.1.140:|foxs:|station:|slot:/|bql:select parent.name as 'Point Name',sourceComponent.slotPath as 'Link Mark From Point Ord',sourceSlotName as 'Link Mark From Slot',targetComponent.slotPath as 'Link Mark To Point Ord ',targetSlotName as 'Link Mark To Slot' from baja:Link where targetSlotName = 'in1' or targetSlotName = 'in2' or targetSlotName = 'in3' or targetSlotName = 'in4' or targetSlotName = 'in5' or targetSlotName = 'in6' or targetSlotName = 'in7' or targetSlotName = 'in8' or targetSlotName = 'in9' or targetSlotName = 'in10' or targetSlotName = 'in11' or targetSlotName = 'in12' or targetSlotName = 'in13' or targetSlotName = 'in14' or targetSlotName = 'in15' or targetSlotName = 'in16'
+
+//Local Config.bog file
+local:|file:~stations/[stationName]/config.bog|bog:|slot:/|bql:select parent.name as 'Point Name',sourceComponent.slotPath as 'Link Mark From Point Ord',sourceSlotName as 'Link Mark From Slot',targetComponent.slotPath as 'Link Mark To Point Ord ',targetSlotName as 'Link Mark To Slot' from baja:Link where targetSlotName = 'in1' or targetSlotName = 'in2' or targetSlotName = 'in3' or targetSlotName = 'in4' or targetSlotName = 'in5' or targetSlotName = 'in6' or targetSlotName = 'in7' or targetSlotName = 'in8' or targetSlotName = 'in9' or targetSlotName = 'in10' or targetSlotName = 'in11' or targetSlotName = 'in12' or targetSlotName = 'in13' or targetSlotName = 'in14' or targetSlotName = 'in15' or targetSlotName = 'in16'
+
+//BQL Query Only
+
+|bql:select parent.name as 'Point Name',sourceComponent.slotPath as 'Link Mark From Point Ord',sourceSlotName as 'Link Mark From Slot',targetComponent.slotPath as 'Link Mark To Point Ord ',targetSlotName as 'Link Mark To Slot' from baja:Link where targetSlotName = 'in1' or targetSlotName = 'in2' or targetSlotName = 'in3' or targetSlotName = 'in4' or targetSlotName = 'in5' or targetSlotName = 'in6' or targetSlotName = 'in7' or targetSlotName = 'in8' or targetSlotName = 'in9' or targetSlotName = 'in10' or targetSlotName = 'in11' or targetSlotName = 'in12' or targetSlotName = 'in13' or targetSlotName = 'in14' or targetSlotName = 'in15' or targetSlotName = 'in16'
