@@ -4,7 +4,7 @@
 
 //To run this query on any station either running in your sandbox, in user home or on a controller open config in workbench and press ctrl+L go to the end of the string and paste the full BQL query from below from : |bql:select parent.name as 'Poi....to....or targetSlotName = 'in16'
 //You can specify individual 'in' slots by deleting unwanted slots. This version searches all slots by default. 
-************************************************************************************************************************************************************************
+//************************************************************************************************************************************************************************
 
 //If run on localhost
 local:|foxs:|station:|slot:/|bql:select parent.name as 'Point Name',sourceComponent.slotPath as 'Link Mark From Point Ord',sourceSlotName as 'Link Mark From Slot',targetComponent.slotPath as 'Link Mark To Point Ord ',targetSlotName as 'Link Mark To Slot' from baja:Link where targetSlotName = 'in1' or targetSlotName = 'in2' or targetSlotName = 'in3' or targetSlotName = 'in4' or targetSlotName = 'in5' or targetSlotName = 'in6' or targetSlotName = 'in7' or targetSlotName = 'in8' or targetSlotName = 'in9' or targetSlotName = 'in10' or targetSlotName = 'in11' or targetSlotName = 'in12' or targetSlotName = 'in13' or targetSlotName = 'in14' or targetSlotName = 'in15' or targetSlotName = 'in16'
@@ -18,3 +18,15 @@ local:|file:~stations/[stationName]/config.bog|bog:|slot:/|bql:select parent.nam
 //BQL Query Only
 
 |bql:select parent.name as 'Point Name',sourceComponent.slotPath as 'Link Mark From Point Ord',sourceSlotName as 'Link Mark From Slot',targetComponent.slotPath as 'Link Mark To Point Ord ',targetSlotName as 'Link Mark To Slot' from baja:Link where targetSlotName = 'in1' or targetSlotName = 'in2' or targetSlotName = 'in3' or targetSlotName = 'in4' or targetSlotName = 'in5' or targetSlotName = 'in6' or targetSlotName = 'in7' or targetSlotName = 'in8' or targetSlotName = 'in9' or targetSlotName = 'in10' or targetSlotName = 'in11' or targetSlotName = 'in12' or targetSlotName = 'in13' or targetSlotName = 'in14' or targetSlotName = 'in15' or targetSlotName = 'in16'
+
+
+//************************************************************************************************************************************************************************
+//To include the 'in' slot of Not blocks add the following to the end of the query:
+ or targetSlotName = 'in'
+
+//************************************************************************************************************************************************************************
+//To include the in slots of And/Or/etc blocks add the following to the end of the query:
+ or targetSlotName = 'inA' or targetSlotName = 'inB' or targetSlotName = 'inC' or targetSlotName = 'inD'
+//************************************************************************************************************************************************************************
+
+//************************************************************************************************************************************************************************
