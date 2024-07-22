@@ -1,0 +1,33 @@
+BQL Query Notes for BQL History Daily timerange
+
+****************************************
+Work in progress 
+****************************************
+
+history:/[stationName]/[historyName]?period=last7Days;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'daily')
+history:/SupervisorTest/[MeteringTest_Meter$201$20kWh]?period=last7Days;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'daily')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?period=timeRange;start=2024-07-22T00:00:00.000-04:00;end=2024-07-22T00:00:00.000-18:00|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?period=timeRange;start=2024-07-22T17:00:00.000-00:00;end=2024-07-22T17:30:00.000-00:00|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?period=timeRange;start=2024-07-22T17:00:00.000-00:00;end=2024-07-22T17:30:00.000-00:00|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?period=timeRange;start=2024-07-22T17:00:00.000-00:00;end=2024-07-22T17:30:00.000-00:00|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?period=timeRange;start=2024-**-**T17:00:00.000-00:00;end=2024-**-**T17:30:00.000-00:00|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?period=timeRange;start=**-**-**T17:00:00.000-00:00;end=**-**-**T17:30:00.000-00:00|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?period=timeRange;start=*T17:00:00.000-00:00;end=*T17:30:00.000-00:00|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?period=timeRange;start=2024-07-**T17:00:00.000-00:00;end=2024-07-**T17:30:00.000-00:00|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?period=timeRange;start=DayT16:58:00.000-00:00;end=DayT18:05:00.000-00:00|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?timestamp.year=2024|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?timestamp.seconds=68400|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?timestamp.hour=18|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?timestamp.hour=18|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?datetime.timedelta=68400|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?timestamp.hour<=18|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?period=timeRange;start=18:00:00.000-00:00;end=19:00:00.000-00:00
+
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?period=timeRange;start=*
+
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWhtimestamp.hour<=18|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?timestamp.ordinal.hour=18|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
+local:|foxs:|history:/SupervisorTest/MeteringTest_Meter$201$20kWh?period=timeRange;start=?T17:00:00.000-04:00;end=?T18:00:00.000-00:00|bql:history:HistoryRollup.rollup(history:RollupInterval'fifteenMin')
