@@ -6,12 +6,12 @@
 
 //BQL Search for points in Fault
 
-station:|slot:/|bql:select name as 'Point Name',slotPath as 'Location',out.value as 'Value' from control:ControlPoint where status.fault = 'true'
+station:|slot:/|bql:select name as 'Point Name',slotPath as 'Path',out as 'Value' from control:ControlPoint where status.fault = 'true'
 
 //BQL Search for points that are stale
 
-station:|slot:/|bql:select name as 'Point Name',slotPath as 'Location',out.value as 'Value' from control:ControlPoint where status.stale = 'true'
+station:|slot:/|bql:select name as 'Point Name',slotPath as 'Path',out as 'Value' from control:ControlPoint where status.stale = 'true'
 
 //BQL Search for points that are Disabled
 
-station:|slot:/|bql:select name as 'Point Name',slotPath as 'Location',out.value as 'Value' from control:ControlPoint where status.disabled = 'true'
+station:|slot:/|bql:select name as 'Point Name',slotPath as 'Path',out as 'Value' from control:ControlPoint where status.disabled = 'true'
