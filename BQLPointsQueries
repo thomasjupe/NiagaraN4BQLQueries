@@ -1,0 +1,17 @@
+//All points with a certain status in Station Query
+//Works for AX or NX
+
+//To run this query on any station either running in your sandbox, in user home or on a controller open config in workbench and press ctrl+L go to the end of the string and paste the full BQL query from below 
+************************************************************************************************************************************************************************
+
+BQL Search for points in Fault
+
+station:|slot:/|bql:select name as 'Point Name',slotPath as 'Location',out.value as 'Value' from control:ControlPoint where status.fault = 'true'
+
+BQL Search for points that are stale
+
+station:|slot:/|bql:select name as 'Point Name',slotPath as 'Location',out.value as 'Value' from control:ControlPoint where status.stale = 'true'
+
+BQL Search for points that are Disabled
+
+station:|slot:/|bql:select name as 'Point Name',slotPath as 'Location',out.value as 'Value' from control:ControlPoint where status.disabled = 'true'
