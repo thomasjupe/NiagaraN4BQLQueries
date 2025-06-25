@@ -1,4 +1,5 @@
 
+
 //Control Points in Alarm
 select slotPath, out from control:ControlPoint where status.alarm
 
@@ -57,8 +58,20 @@ slot:/|bql:select parent.displayName as 'Name', alarmClass as 'Alarm Type', alar
 In the report service there is an AlarmQueryToCsv component which you can use to export your alarm queries to CSV
 
 **************************************************************************************************************************************************************************
+
+BQL for Alarm Extensions
+
+Fault Occurred | %alarmData.presentValue%
+Alarm Occurred | %alarmData.presentValue%
+Alarm Cleared | %alarmData.presentValue%
+
+**************************************************************************************************************************************************************************
+
+**************************************************************************************************************************************************************************
 This file is a work in progress and there may well be errors in the syntax below this point
 **************************************************************************************************************************************************************************
+
+
 
 //NB. Message Texts are formatted at display time so call BFormat.make(alarmDataMsgText).format(alarmRecord) if you want to display it.
 
@@ -115,6 +128,7 @@ bqltime.monthtodate
 bqltime.yeartodate
 
 alarm:|bql:select timestamp as 'Time Stamp',normalTime as 'Normal Time',alarmData.sourceName,alarmData.msgText,alarmData.fromState,alarmData.toState,alarmData.presentValue,alarmData.highLimit,alarmData.lowLimit,alarmData.Count,alarmClass where timestamp in bqltime.yesterday and alarmClass !='Montrose' order by alarmClass,timestamp ASC
+
 
 
 Sources:
