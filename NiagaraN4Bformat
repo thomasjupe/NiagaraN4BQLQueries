@@ -81,6 +81,9 @@ Alarm Bformat
 //(to use on Alarm Extension Text)Returns the “Source Name” within the Fault, Offnormal or Normal text of an alarm
 %alarmData.sourceName%	
 
+//(to use on Alarm Extension Text)Returns the “Present Value” within the Fault, Offnormal or Normal text of an alarm
+%alarmData.presentValue%
+
 //(to use on Alarm Extension Text)Returns the “High Limit” within the Fault, Offnormal or Normal text of an alarm
 %alarmData.highLimit%
 
