@@ -52,16 +52,20 @@ timestamp.hour
 
 ************************************************************************************************************************************************************************
 
-
-
-
 history:/[stationName]|bql:select * where historyName like '*MeterTotal'or historyName like '*DaykWh' or historyName like '*NightkWh'|bql:select historyName as 'Name', bqltime.startofmonth as 'Timestamp'
 
 history:/[stationName]|bql:select * where historyName like '*MeterTotal'or historyName like '*DaykWh' or historyName like '*NightkWh
 
-
-
 history:/[stationName]/[stationName]?period=yearToDate;delta=true|bql:history:HistoryRollup.rollup(history:RollupInterval'monthly')|bql:select timestamp.date as 'Date', timestamp.month as 'Month', sum as 'Total'|view:workbench:CollectionTable
+
+************************************************************************************************************************************************************************
+
+The result of resolving a BQL query is a BITable which can be displayed using a BoundTable widget. If you are trying to extract the value from a specific cell in the BITable to display using a BoundLabel, then you can utilize the cell scheme on the end of the BQL query ord.
+The cell scheme uses zero based index values and you can specify the column and row.
+cell: [colName | colIndex], [rowIndex | 'last']
+For example, you could query a history sorting by the value column and then extract the value from the desired cell.
+history:/myStation/myHistory|bql:select top 1 timestamp, value order by value desc|cell:1,0
+history:/myStation/myHistory|bql:select top 1 timestamp, value order by value desc|cell:value,0
 
 ************************************************************************************************************************************************************************
 
