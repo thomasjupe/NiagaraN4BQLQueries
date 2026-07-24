@@ -2,6 +2,12 @@
 //Active Alarms by Alarm Class Replace defaultAlarmClass with the class you want
 bql:select * from alarm:AlarmSourceExt where alarmClass = 'defaultAlarmClass' and status.alarm = true
 
+//Device monitoring:
+//List by Last Ok Time to show fail time it is automatically Ordered with down devices shown up top, ( to remove the auto ordering delete 'order by down DESC' and to order with up devices change DESC to ASC)
+bql:select parent.name as 'Device', down as 'Down', lastOkTime as 'Last Ok Time', lastFailTime as 'Last Fail Time' from driver:PingHealth order by down DESC
+
+it is automatically Ordered with down devices shown up top, ( to remove the auto ordering delete 'order by down DESC' and to order with up devices change DESC to ASC)
+
 //Control Points in Alarm
 select slotPath, out from control:ControlPoint where status.alarm
 
