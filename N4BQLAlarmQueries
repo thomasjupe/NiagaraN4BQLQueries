@@ -1,4 +1,6 @@
 
+//Active Alarms by Alarm Class Replace defaultAlarmClass with the class you want
+bql:select * from alarm:AlarmSourceExt where alarmClass = 'defaultAlarmClass' and status.alarm = true
 
 //Control Points in Alarm
 select slotPath, out from control:ControlPoint where status.alarm
