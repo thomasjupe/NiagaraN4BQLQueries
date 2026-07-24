@@ -1,0 +1,2 @@
+//Query to see users that have logged in and out
+station:|history:/stationName/SecurityHistory?period=last7Days|bql:select timestamp.toDateString as 'Date',timestamp.toTimeString as 'Time',operation as 'Operation',userName as 'User' where operation like 'Login' or operation like 'Logout'
