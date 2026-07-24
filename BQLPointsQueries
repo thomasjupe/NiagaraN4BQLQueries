@@ -15,3 +15,15 @@ station:|slot:/|bql:select name as 'Point Name',slotPath as 'Path',out as 'Value
 //BQL Search for points that are Disabled
 
 station:|slot:/|bql:select name as 'Point Name',slotPath as 'Path',out as 'Value' from control:ControlPoint where status.disabled = 'true'
+
+//Points with a down status
+
+station:|slot:/bql:select name as 'Point Name',out.value as 'Value',slotPath as 'Ord' from control:ControlPoint where status.down = 'true'
+
+//Points with a disabled status
+
+station:|slot:/bql:select name as 'Point Name',out.value as 'Value',slotPath as 'Ord' from control:ControlPoint where status.disabled = 'true'
+
+//Points with an overridden status
+
+station:|slot:/bql:select name as 'Point Name',out.value as 'Value',slotPath as 'Ord' from control:ControlPoint where status.overridden = 'true'
